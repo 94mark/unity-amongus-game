@@ -5,8 +5,36 @@ using Mirror;
 
 public class AmongUsRoomPlayer : NetworkRoomPlayer
 {
-    [SyncVar]
+    private static AmongUsRoomPlayer myRoomPlayer;
+
+    public static AmongUsRoomPlayer MyRoomPlayer
+    {
+        get
+        {
+            if(myRoomPlayer == null)
+            {
+                var players = FindObjectsOfType<AmongUsRoomPlayer>();
+                foreach(var player in players)
+                {
+                    if(player.hasAuthority)
+                    {
+                        myRoomPlayer = player;
+                    }
+                }
+            }
+            return myRoomPlayer;
+        }
+    }
+
+    [SyncVar(hook = nameof(SetPlayerColor_Hook))]
     public EPlayerColor playerColor;
+
+    public void SetPlayerColor_Hook(EPlayerColor oldColor, EPlayerColor newColor)
+    {
+        LobbyUIManager.Instance.CustomizeUI.UpdateColorButton();
+    }
+
+    public CharacterMover lobbyPlayerCharacter;
 
     public void Start()
     {
@@ -16,6 +44,13 @@ public class AmongUsRoomPlayer : NetworkRoomPlayer
         {
             SpawnLobbyPlayerCharacter();
         }
+    }
+
+    [Command]
+    public void CmdSetPlayerColor(EPlayerColor color)
+    {
+        playerColor = color;
+        lobbyPlayerCharacter.playerColor = color;
     }
 
     private void SpawnLobbyPlayerCharacter()
@@ -48,6 +83,7 @@ public class AmongUsRoomPlayer : NetworkRoomPlayer
 
         var playerCharacter = Instantiate(AmongUsRoomManager.singleton.spawnPrefabs[0], spawnPos, Quaternion.identity).GetComponent<LobbyCharacterMover>();
         NetworkServer.Spawn(playerCharacter.gameObject, connectionToClient);
+        playerCharacter.ownerNetId = netId;
         playerCharacter.playerColor = color;
     }
 }

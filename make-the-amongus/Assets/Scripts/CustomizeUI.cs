@@ -53,4 +53,25 @@ public class CustomizeUI : MonoBehaviour
     {
         characterPreview.material.SetColor("_PlayerColor", PlayerColor.GetColor(color));
     }
+
+    public void OnClickColorButton(int index)
+    {
+        if(colorSelectButtons[index].isInteractable)
+        {
+            AmongUsRoomPlayer.MyRoomPlayer.CmdSetPlayerColor((EPlayerColor)index);
+            UpdatePreviewColor((EPlayerColor)index);
+        }
+    }
+
+    public void Open()
+    {
+        AmongUsRoomPlayer.MyRoomPlayer.lobbyPlayerCharacter.isMoveable = false;
+        gameObject.SetActive(true);
+    }
+
+    public void Close()
+    {
+        AmongUsRoomPlayer.MyRoomPlayer.lobbyPlayerCharacter.isMoveable = true;
+        gameObject.SetActive(false);
+    }
 }

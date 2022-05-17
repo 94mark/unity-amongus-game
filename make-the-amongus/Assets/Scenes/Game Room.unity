@@ -158,7 +158,7 @@ Transform:
   - {fileID: 2105800128}
   - {fileID: 492086141}
   m_Father: {fileID: 1691343079}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54237800
 GameObject:
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 78ccd39a2d7109941a3f6d94d005a439, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -650,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_Children: []
   m_Father: {fileID: 1691343079}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &134768473
 GameObject:
@@ -1332,6 +1332,7 @@ GameObject:
   - component: {fileID: 440525729}
   - component: {fileID: 440525731}
   - component: {fileID: 440525730}
+  - component: {fileID: 440525732}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1396,6 +1397,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440525728}
   m_CullTransparentMesh: 1
+--- !u!114 &440525732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440525728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 440525730}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &467051400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,7 +1550,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 467051404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &467051404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,13 +1905,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542122454}
+  - component: {fileID: 542122455}
   m_Layer: 5
   m_Name: CustomizeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &542122454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1864,6 +1934,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &542122455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542122453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3727cd9af0b75c40b8cf4d652600723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPreview: {fileID: 99571226}
+  colorSelectButtons:
+  - {fileID: 1179855107}
+  - {fileID: 2110019570}
+  - {fileID: 972892270}
+  - {fileID: 1209041147}
+  - {fileID: 808068628}
+  - {fileID: 1788462802}
+  - {fileID: 741482897}
+  - {fileID: 1682835725}
+  - {fileID: 1018701871}
+  - {fileID: 1128983228}
+  - {fileID: 467051402}
+  - {fileID: 1574458506}
 --- !u!1 &553527995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2282,7 @@ Transform:
   m_LocalScale: {x: 1.1971246, y: 1.1971245, z: 1.1971246}
   m_Children: []
   m_Father: {fileID: 1691343079}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -12.01, z: 0}
 --- !u!1 &697041045
 GameObject:
@@ -2360,7 +2456,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 741482899}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &741482899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2531,6 +2639,7 @@ GameObject:
   - component: {fileID: 786053065}
   - component: {fileID: 786053064}
   - component: {fileID: 786053063}
+  - component: {fileID: 786053067}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2626,6 +2735,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &786053067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786053062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008a020c94b9919498663bf42a276c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customizeUI: {fileID: 542122455}
+  useButton: {fileID: 1952539957}
+  originUseButtonSprite: {fileID: 21300000, guid: 1abf9d0ad96ed484ab3f289f79f9404d, type: 3}
 --- !u!1 &808068626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,7 +2847,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 808068630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &808068630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3269,7 +3405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 972892272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &972892272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3482,7 +3630,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1018701873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1018701873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3751,7 +3911,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1128983230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1128983230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3950,7 +4122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1179855105}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1179855105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4235,7 +4419,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1209041149}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1209041149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5226,7 +5422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1574458508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1574458508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5509,7 +5717,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1682835727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1682835727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,6 +5848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1830682945}
+  - {fileID: 2039527837}
   - {fileID: 2063751579}
   - {fileID: 653851788}
   - {fileID: 119747208}
@@ -5999,7 +6220,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1788462804}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1788462804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6331,8 +6564,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1830682945}
   - component: {fileID: 1830682946}
+  - component: {fileID: 1830682947}
+  - component: {fileID: 1830682948}
   m_Layer: 0
-  m_Name: sprite_laptop
+  m_Name: sprite_laptop_Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6371,7 +6606,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c2077ee146973a0459da7c7b6af79fa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6391,7 +6626,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 6f032f7b297eb4f46922b83ff4c75e72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6403,6 +6638,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1830682947
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830682944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.027591228, y: -0.13984782}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.61, y: 0.51}
+    newSize: {x: 0.61, y: 0.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7718186, y: 1.817114}
+  m_EdgeRadius: 0
+--- !u!114 &1830682948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830682944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7868691df54471746a2ca663bf6bb5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useButtonSprite: {fileID: 21300000, guid: 1aa46c5fcf627ad409d7cd1e922dcc1c, type: 3}
 --- !u!1 &1880125036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,7 +6904,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1952539958}
   m_OnClick:
     m_PersistentCalls:
@@ -6871,6 +7145,129 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2039527836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039527837}
+  - component: {fileID: 2039527838}
+  - component: {fileID: 2039527839}
+  - component: {fileID: 2039527840}
+  m_Layer: 0
+  m_Name: sprite_laptop_Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2039527837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039527836}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.792, y: 1.153, z: 0}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.7449258}
+  m_Children: []
+  m_Father: {fileID: 1691343079}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2039527838
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039527836}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: eb76ee6d552027d41aba5919e5356c8b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 6f032f7b297eb4f46922b83ff4c75e72, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.61, y: 0.51}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &2039527839
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039527836}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.18410003, y: 0.09617746}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.61, y: 0.51}
+    newSize: {x: 0.61, y: 0.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.6747553, y: 3.265723}
+  m_EdgeRadius: 0
+--- !u!114 &2039527840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039527836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d3b79a61073e1429155cf254481e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &2063751577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6951,7 +7348,7 @@ Transform:
   m_LocalScale: {x: 0.9084461, y: 0.9084461, z: 0.9084461}
   m_Children: []
   m_Father: {fileID: 1691343079}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067774584
 GameObject:
@@ -7221,7 +7618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2110019572}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542122455}
+        m_TargetAssemblyTypeName: CustomizeUI, Assembly-CSharp
+        m_MethodName: OnClickColorButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2110019572
 MonoBehaviour:
   m_ObjectHideFlags: 0
