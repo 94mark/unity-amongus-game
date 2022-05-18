@@ -31,6 +31,7 @@ public class AmongUsRoomPlayer : NetworkRoomPlayer
 
     public void SetPlayerColor_Hook(EPlayerColor oldColor, EPlayerColor newColor)
     {
+        LobbyUIManager.Instance.CustomizeUI.UpdateUnselectColorButton(oldColor);
         LobbyUIManager.Instance.CustomizeUI.UpdateSelectColorButton(newColor);
     }
 
