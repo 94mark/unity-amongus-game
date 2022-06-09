@@ -37,32 +37,72 @@ public struct GameRuleData
 
 public class GameRuleStore : NetworkBehaviour
 {
-    [SyncVar]
-    private bool isRecommendRules;
+    [SyncVar(hook = nameof(SetIsRecommendRule_Hook))]
+    private bool isRecommendRule;
     [SerializeField]
     private Toggle isRecommendRuleToggle;
-    [SyncVar]
+    public void SetIsRecommendRule_Hook(bool _, bool value)
+    {
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetConfirmEjects_Hook))]
     private bool confirmEjects;
     [SerializeField]
     private Toggle confirmEjectsToggles;
+    public void SetConfirmEjects_Hook(bool _, bool value)
+    {
+        UpdateGameRuleOverview();
+    }
+
     [SyncVar]
     private int emergencyMeetings;
     [SerializeField]
     private Text emergencyMeetingsText;
-    [SyncVar]
+    public void SetEmergencyMeetings_Hook(int _, int value)
+    {
+        emergencyMeetingsText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetEmergencyMeetingCooldown_Hook))]
     private int emergencyMeetingsCooldown;
     [SerializeField]
     private Text emergencyMeetingsCooldownText;
-    [SyncVar]
+    public void SetEmergencyMeetingCooldown_Hook(int _, int value)
+    {
+        emergencyMeetingsCooldownText.text = string.Format("{0}s", emergencyMeetingsCooldown);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetMeetingsTime_Hook))]
     private int meetingsTime;
     [SerializeField]
     private Text meetingsTimeText;
-    [SyncVar]
+    public void SetMeetingsTime_Hook(int _, int value)
+    {
+        meetingsTimeText.text = string.Format("{0}s", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetVoteTime_Hook))]
     private int voteTimes;
     [SerializeField]
     private Text voteTimeText;
-    [SyncVar]
+    public void SetVoteTime_Hook(int _, int value)
+    {
+        voteTimeText.text = string.Format("{0}s", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetAnonymousVotes_Hook))]
     private bool anonymousVotes;
+    [SerializeField]
+    private Toggle anonymouseVotesToggle;
+    public void SetAnonymousVotes_Hook(bool _, bool value)
+    {
+        UpdateGameRuleOverview();
+    }
     [SyncVar]
     private float moveSpeed;
     [SerializeField]
@@ -83,10 +123,16 @@ public class GameRuleStore : NetworkBehaviour
     private EKillRange killRange;
     [SerializeField]
     private Text killRangeText;
-    [SyncVar]
+
+    [SyncVar(hook = nameof(SetVisualTasks_Hook))]
     private bool visualTasks;
     [SerializeField]
     private Toggle visualTasksToggle;
+    public void SetVisualTasks_Hook(bool _, bool value)
+    {
+        UpdateGameRuleOverview();
+    }
+
     [SyncVar]
     private ETaskBarUpdates taskBarUpdates;
     [SerializeField]
@@ -110,7 +156,7 @@ public class GameRuleStore : NetworkBehaviour
     private void UpdateGameRuleOverview()
     {
         var manager = NetworkManager.singleton as AmongUsRoomManager;
-        StringBuilder sb = new StringBuilder(isRecommendRules ? "추천 설정\n" : "커스텀 설정\n");
+        StringBuilder sb = new StringBuilder(isRecommendRule ? "추천 설정\n" : "커스텀 설정\n");
         sb.Append("맵 : The SKeId\n");
         sb.Append($"#임포스터 : {manager.imposterCount}\n");
         sb.Append(string.Format("Confirm Ejects : {0}\n", confirmEjects ? "켜짐" : "꺼짐"));
@@ -131,10 +177,32 @@ public class GameRuleStore : NetworkBehaviour
         sb.Append($"간단한 임무 : {simpleTask}\n");
         gameRuleOverview.text = sb.ToString();
     }
+
+    private void SetRecommendGameRule()
+    {
+        isRecommendRule = true;
+        confirmEjects = true;
+        emergencyMeetings = 1;
+        emergencyMeetingsCooldown = 15;
+        meetingsTime = 15;
+        voteTimes = 120;
+        moveSpeed = 1f;
+        crewSight = 1f;
+        imposterSight = 1.5f;
+        killCooldown = 45f;
+        killRange = EKillRange.Normal;
+        visualTasks = true;
+        commonTasks = 1;
+        complexTask = 1;
+        simpleTask = 2;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(isServer)
+        {
+            SetRecommendGameRule();
+        }
     }
 
     // Update is called once per frame
