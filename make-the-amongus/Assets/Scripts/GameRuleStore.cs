@@ -30,7 +30,7 @@ public struct GameRuleData
     public EKillRange killRange;
     public bool visualTasks;
     public ETaskBarUpdates taskBarUpdates;
-    public int commonTasks;
+    public int commonTask;
     public int complexTask;
     public int simpleTask;
 }
@@ -103,26 +103,56 @@ public class GameRuleStore : NetworkBehaviour
     {
         UpdateGameRuleOverview();
     }
-    [SyncVar]
+
+    [SyncVar(hook = nameof(SetMoveSpeed_Hook))]
     private float moveSpeed;
     [SerializeField]
     private Text moveSpeedText;
-    [SyncVar]
+    public void SetMoveSpeed_Hook(float _, float value)
+    {
+        moveSpeedText.text = string.Format("{0:0:0}x", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetCrewSight_Hook))]
     private float crewSight;
     [SerializeField]
     private Text crewSightText;
-    [SyncVar]
+    public void SetCrewSight_Hook(float _, float value)
+    {
+        crewSightText.text = string.Format("{0:0:0}x", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetImposterSight_Hook))]
     private float imposterSight;
     [SerializeField]
     private Text imposterSightText;
-    [SyncVar]
+    public void SetImposterSight_Hook(float _, float value)
+    {
+        imposterSightText.text = string.Format("{0:0:0}x", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetKillCooldown_Hook))]
     private float killCooldown;
     [SerializeField]
     private Text killCooldownText;
-    [SyncVar]
+    public  void SetKillCooldown_Hook(float _, float value)
+    {
+        killCooldownText.text = string.Format("{0:0:0}s", value);
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetKillRange_Hook))]
     private EKillRange killRange;
     [SerializeField]
     private Text killRangeText;
+    public void SetKillRange_Hook(EKillRange _, EKillRange value)
+    {
+        killRangeText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
 
     [SyncVar(hook = nameof(SetVisualTasks_Hook))]
     private bool visualTasks;
@@ -133,22 +163,45 @@ public class GameRuleStore : NetworkBehaviour
         UpdateGameRuleOverview();
     }
 
-    [SyncVar]
+    [SyncVar(hook = nameof(SetTaskBarUpdates_Hook))]
     private ETaskBarUpdates taskBarUpdates;
     [SerializeField]
     private Text taskBarUpdatesText;
-    [SyncVar]
-    private int commonTasks;
+    public void SetTaskBarUpdates_Hook(ETaskBarUpdates _, ETaskBarUpdates value)
+    {
+        taskBarUpdatesText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetCommonTask_Hook))]
+    private int commonTask;
     [SerializeField]
     private Text commonTaskText;
-    [SyncVar]
+    public void SetCommonTask_Hook(int _, int value)
+    {
+        commonTaskText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetComplexTask_Hook))]
     private int complexTask;
     [SerializeField]
     private Text complexTaskText;
-    [SyncVar]
+    public void SetComplexTask_Hook(int _, int value)
+    {
+        complexTaskText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
+
+    [SyncVar(hook = nameof(SetSimpleTask_Hook))]
     private int simpleTask;
     [SerializeField]
-    private Text simpleTaksText;
+    private Text simpleTaskText;
+    public void SetSimpleTask_Hook(int _, int value)
+    {
+        simpleTaskText.text = value.ToString();
+        UpdateGameRuleOverview();
+    }
 
     [SerializeField]
     private Text gameRuleOverview;
@@ -172,7 +225,7 @@ public class GameRuleStore : NetworkBehaviour
         sb.Append($"킬 범위 : {killRange}\n");
         sb.Append($"Task Bar Updates : {taskBarUpdates}\n");
         sb.Append(string.Format("Visual Tasks : {0}\n", visualTasks ? "켜짐" : "꺼짐"));
-        sb.Append($"공통 임무 : {commonTasks}\n");
+        sb.Append($"공통 임무 : {commonTask}\n");
         sb.Append($"복잡한 임무 : {complexTask}\n");
         sb.Append($"간단한 임무 : {simpleTask}\n");
         gameRuleOverview.text = sb.ToString();
@@ -192,7 +245,7 @@ public class GameRuleStore : NetworkBehaviour
         killCooldown = 45f;
         killRange = EKillRange.Normal;
         visualTasks = true;
-        commonTasks = 1;
+        commonTask = 1;
         complexTask = 1;
         simpleTask = 2;
     }
